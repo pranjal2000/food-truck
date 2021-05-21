@@ -1,24 +1,26 @@
 import logo from './logo.svg';
-import './App.css';
-
+import React, { Component } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Navbar from './components/layout/Navbar'
+import Dashboard from './components/dashboard/Dashboard';
+import DishDetails from './components/dishes/DishDetails'
+import SignIn from './components/auth/SignIn';
+import SignUp from './components/auth/SignUp';
+import CreateDish from './components/dishes/CreateDish';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Navbar/ >
+        <Switch>
+          <Route exact path='/' component={Dashboard}/>
+          <Route path='/dish/:name' component={DishDetails}/>
+          <Route path='/signin' component={SignIn}/>
+          <Route path='/signup' component={SignUp}/>
+          <Route path='/adddish' component={CreateDish}/>
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
